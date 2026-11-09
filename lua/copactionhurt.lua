@@ -69,7 +69,9 @@ CopActionHurt.allowed_client_act_variants = {
 }
 
 function CopActionHurt:chk_block_client(action_desc, action_type, t)
-	if action_desc.type == "dodge" or action_desc.type == "act" and self.allowed_client_act_variants[action_desc.variant] then
+	if self._hurt_type == "death" then
+		return true
+	elseif action_desc.type == "dodge" or action_desc.type == "act" and self.allowed_client_act_variants[action_desc.variant] then
 		return false
 	end
 
